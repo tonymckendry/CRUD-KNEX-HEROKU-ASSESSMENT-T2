@@ -14,8 +14,8 @@ router.get('/:post_id/comments', function(req, res, next) {
 });
 
 router.post('/:post_id/comments', function(req, res, next) {
-  Comments().where('post_id', post_id).insert(req.body).then(function(){
-    res.redirect('/' + req.params.post_id + '/comments');
+  Comments().insert(req.body).then(function(){
+    res.redirect('/posts/' + req.params.post_id + '/comments' );
   })
 });
 
@@ -32,13 +32,13 @@ router.get('/:post_id/comments/:id/edit', function(req, res, next){
 })
 
 router.post('/:post_id/comments/:id', function(req, res, next) {
-  Comments().where('id', req.params.id).first().insert(req.body).then(function(){
-    res.redirect('/' + req.params.post_id + '/comments/' + req.params.id);
+  Comments().where('id', req.params.id).first().update(req.body).then(function(){
+    res.redirect('/posts/' + req.params.post_id + '/comments');
   })
 });
 router.post('/:post_id/comments/:id/delete', function(req, res, next) {
-  Comments().where('id', req.params.id).first().delete().then(function(){
-    res.redirect('/' + req.params.post_id + '/comments');
+  Comments().where('id', req.params.id).delete().then(function(){
+    res.redirect('/posts/' + req.params.post_id + '/comments');
   })
 });
 
