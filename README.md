@@ -51,7 +51,7 @@ id
 author
 body
 ```
-__REVIEWS SCHEMA__
+__COMMENTS SCHEMA__
 
 ```
 id
